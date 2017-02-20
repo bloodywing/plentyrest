@@ -6,15 +6,10 @@ from requests_oauthlib.compliance_fixes import plentymarkets_compliance_fix
 import logging
 from pprint import pformat
 
-logging.basicConfig()
-
-logger = logging.getLogger()
-logger.setLevel(logging.WARN)
-
 
 class Plenty(object):
 
-    def __init__(self, oauth_domain, username=None, password=None, access_token=None, ):
+    def __init__(self, oauth_domain, username=None, password=None, access_token=None):
         self.domain = oauth_domain
         self.lastresponse = None
         token_url = 'https://%s/rest/login' % oauth_domain
@@ -25,16 +20,11 @@ class Plenty(object):
                 'access_token': access_token,
                 'token_type': 'Bearer'
             }
-
-            extra = None
-
         else:
             token = None
-            extra = None
 
         session = OAuth2Session(client=LegacyApplicationClient('plenty-rest'),
                                 auto_refresh_url=refresh_url,
-                                auto_refresh_kwargs=extra,
                                 token=token,
                                 token_updater=self.token_saver)
         self.session = plentymarkets_compliance_fix(session)
@@ -46,7 +36,7 @@ class Plenty(object):
                                                   password=password)
 
     def token_saver(self, token):
-        return NotImplementedError
+        return NotImplemented
 
     def request(self, path, method='GET', params=None, data=None, json=None):
         path = path.lstrip('/')
