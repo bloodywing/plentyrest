@@ -4,5 +4,5 @@ sphinx_rtd_theme
 nose
 coverage
 pypi-publisher
-requests_oauthlib
+https://github.com/requests/requests-oauthlib/archive/master.zip
 mock
