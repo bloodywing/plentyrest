@@ -20,9 +20,23 @@ clone the repo:
 Contributing
 ------------
 
-TBD
+Just send pullrequests on github or open issues.
 
 Example
 -------
 
-TBD
+    from plentyrest.rest import Plenty
+    
+    plenty = Plenty('myshop.plentymarkets-cloud02.com', 'restuser', 'password')
+    items = plenty.request('rest/items')  # lists your items
+    
+    print(items)
+    
+    plenty.request('rest/items', 'POST', json={
+        ...
+        'variations': [
+            {
+              'name': 'Spam'
+            },
+        ]
+    }
