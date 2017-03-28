@@ -42,7 +42,8 @@ class Plenty(object):
         path = path.lstrip('/')
         response = self.session.request(method, 'https://%s/%s' % (self.domain, path), params=params, data=data, json=json)
         self.lastresponse = response
-        logging.info(pformat(response.json()))
         if 'json' in response.headers['content-type']:
+            logging.info(pformat(response.json()))
             return response.json()
+        logging.info(pformat(response.content))
         return response.content
