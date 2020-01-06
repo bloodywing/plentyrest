@@ -1,2 +1,2 @@
 # Dev/Deployment
-https://github.com/requests/requests-oauthlib/archive/master.zip
+requests-oauthlib>=1.2.0
